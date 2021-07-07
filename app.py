@@ -10,10 +10,9 @@ app.config['SECRET_KEY'] = "verysecretkey"
 def home():
     con = sql.connect("data.db")
     cur = con.cursor()
-    x = cur.execute("SELECT * FROM book")
-    for i in x:
-        print(i)
-    return render_template("index.html")
+    y = cur.execute("SELECT * FROM book")
+    x = [i for i in y]
+    return render_template("index.html", x = x[1:4])
 
 
 if __name__ == "__main__":

@@ -1,8 +1,12 @@
 import json
 
-with open("data.json","r") as f:
-    x = json.load(f)
-    x['ok'] = "ok"
-    json.dumps(x,f)
+f= open("data.json","r")
+x = json.load(f)
+x['mm'] = "sp"
+f.close()
+open("data.json","w").write(json.dumps(x))
+
+
+
 
 

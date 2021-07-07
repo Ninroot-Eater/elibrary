@@ -1,12 +1,11 @@
-import json
-
-f= open("data.json","r")
-x = json.load(f)
-x['mm'] = "sp"
-f.close()
-open("data.json","w").write(json.dumps(x))
+import sqlite3 as sql
 
 
+con = sql.connect("data.db")
+cur = con.cursor()
 
+def book_table():
+    x = cur.execute("SELECT * FROM book")
+    return x
 
 

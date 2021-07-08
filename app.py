@@ -24,6 +24,7 @@ x = Book(bid=1,title="The Hobbit",author="J.R.R. Tolkein", blink="https://blink"
 @app.route("/")
 def home():
     x = session.get(Book,1)
+    print(x)
     return render_template("index.html", x = x)
 
 

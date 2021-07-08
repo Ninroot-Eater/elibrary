@@ -11,7 +11,7 @@ db = SQLAlchemy()
 
 def setup_db(app):
     database_name ='elib'
-    default_database_path= "postgresql://{}:{}@{}/{}".format('postgres', 'THU11!!%THEE', 'localhost:5432', database_name)
+    default_database_path= "postgresql://stefdqcvulajbn:6e372d2f92d2e275d28afc2274739368bd08ed50743accbaae4281b00a557f01@ec2-34-202-54-225.compute-1.amazonaws.com:5432/d5il4lge2reh4p".format('postgres', 'THU11!!%THEE', 'localhost:5432', database_name)
     database_path = os.getenv('DATABASE_URL', default_database_path)
 
     

@@ -42,6 +42,6 @@ class Book(db.Model):
     des = db.Column(db.String)
 
     def __repr__(self):
-        return f"<id {self.bid}>"
+        return f"<id {self.bid} {self.title}>"
 
 

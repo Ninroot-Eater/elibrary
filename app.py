@@ -1,6 +1,6 @@
 from re import A
 import re
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 from sqlalchemy.engine import create_engine
 from werkzeug.utils import redirect
 from models import setup_db, db_drop_and_create_all, db, Book
@@ -22,10 +22,12 @@ session = Session(engine)
 
 
 
-@app.route("/")
+@app.route("/", methods=["GET","POST"])
 def home():
     x = Book.query.all()
-    
+    if request.method == "POST":
+        q = request.form.get("search")
+        return render_template("results.html", x = x)
     return render_template("index.html", x = x)
 
 
@@ -35,6 +37,7 @@ def is_int(x):
         return True
     except ValueError:
         return False
+
 @app.route("/detail/<int:bid>")
 def detail(bid):
     if is_int(bid):

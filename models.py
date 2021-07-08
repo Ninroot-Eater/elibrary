@@ -2,7 +2,6 @@ import csv
 import os
 from sqlalchemy import Column, String, Integer, create_engine, Boolean
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy.orm import Session
 from sqlalchemy.sql.operators import op
 
 db = SQLAlchemy()
@@ -46,12 +45,3 @@ class Book(db.Model):
         return f"<id {self.bid}>"
 
 
-def add_data(csv_file):
-    x = setup_db()
-    engine = create_engine(x)
-    session = Session(engine)
-    r = csv.reader(open(csv_file,"r",encoding="utf-8"))
-    lst = [i for i in r]
-
-    for i in lst:
-        print(i)

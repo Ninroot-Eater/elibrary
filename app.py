@@ -18,7 +18,7 @@ engine = create_engine(x)
 session = Session(engine)
 
 x = Book(bid=1,title="The Hobbit",author="J.R.R. Tolkein", blink="https://blink", plink="https://plink",
-        btype="Fiction",level="IELTS")
+        btype="Fiction",level="IELTS",des="A very good book. Must read. hahahah")
 #session.add(x)
 #session.commit()
 @app.route("/")

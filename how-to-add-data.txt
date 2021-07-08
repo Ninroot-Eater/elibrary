@@ -1,0 +1,12 @@
+-download csv from google sheet
+-delete headers
+-rename file as "blist.csv"
+-paste the file in the same directory as this one.
+-click "replace" if there is another "blist.csv" in the folder
+-paste the image in the static/images folder 
+-run data_add.py
+-run the following commands:
+    git add .
+    gti commit -m "comment"
+    git push -u heroku master
+

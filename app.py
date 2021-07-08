@@ -1,5 +1,8 @@
-from flask import Flask, render_template
+from re import A
+import re
+from flask import Flask, render_template, request
 from sqlalchemy.engine import create_engine
+from werkzeug.utils import redirect
 from models import setup_db, db_drop_and_create_all, db, Book
 from flask_migrate import Migrate
 from sqlalchemy.orm import Session, session
@@ -17,14 +20,30 @@ db.create_all()
 engine = create_engine(x)
 session = Session(engine)
 
-x = Book(bid=1,title="The Hobbit",author="J.R.R. Tolkein", blink="https://blink", plink="https://plink",
-        btype="Fiction",level="IELTS",des="A very good book. Must read. hahahah")
-#session.add(x)
-#session.commit()
-@app.route("/")
+
+
+@app.route("/", methods=["GET","POST"])
 def home():
-    x = session.get(Book,1)
+    x = Book.query.all()
+    if request.method == "POST":
+        q = request.form.get("search")
+        return render_template("results.html", x = x)
     return render_template("index.html", x = x)
+
+
+def is_int(x):
+    try:
+        int(x)
+        return True
+    except ValueError:
+        return False
+
+@app.route("/detail/<int:bid>")
+def detail(bid):
+    if is_int(bid):
+        x = Book.query.get(bid)
+        return render_template("detail.html",x=x)
+    return redirect(home)
 
 
 if __name__ == "__main__":

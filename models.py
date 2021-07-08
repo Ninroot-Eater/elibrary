@@ -2,7 +2,6 @@ import csv
 import os
 from sqlalchemy import Column, String, Integer, create_engine, Boolean
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy.orm import Session
 from sqlalchemy.sql.operators import op
 
 db = SQLAlchemy()
@@ -11,7 +10,7 @@ db = SQLAlchemy()
 
 def setup_db(app):
     database_name ='elib'
-    default_database_path= "postgresql://{}:{}@{}/{}".format('postgres', 'THU11!!%THEE', 'localhost:5432', database_name)
+    default_database_path= "postgresql://stefdqcvulajbn:6e372d2f92d2e275d28afc2274739368bd08ed50743accbaae4281b00a557f01@ec2-34-202-54-225.compute-1.amazonaws.com:5432/d5il4lge2reh4p".format('postgres', 'THU11!!%THEE', 'localhost:5432', database_name)
     database_path = os.getenv('DATABASE_URL', default_database_path)
 
     
@@ -46,12 +45,3 @@ class Book(db.Model):
         return f"<id {self.bid}>"
 
 
-def add_data(csv_file):
-    x = setup_db()
-    engine = create_engine(x)
-    session = Session(engine)
-    r = csv.reader(open(csv_file,"r",encoding="utf-8"))
-    lst = [i for i in r]
-
-    for i in lst:
-        print(i)
